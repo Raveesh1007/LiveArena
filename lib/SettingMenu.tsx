@@ -126,11 +126,60 @@ export function SettingsMenu(props: SettingsMenuProps) {
                     <h3>Camera</h3>
                     <section className="lk-button-group">
                         <TrackToggle source = {Track.Source.Camera}>Camera</TrackToggle>
-                        
+                        <div className="lk-button-group-menu">
+                        <MediaDeviceMenu kind = "audioinput"/>
+                        </div>
                     </section>
                 </>
             )}
+            {settings.media && settings.media.microphone &&(
+                <>
+                <h3> Speaker & Headphone</h3>
+                <section className = "lk-button-group">
+                    <span className = "lk-button">Audio Output</span>
+                    <div className = "lk-button-group-menu">
+                        <MediaDeviceMenu kind = "audiooutput"></MediaDeviceMenu>
+                    </div>
+                </section>
+                </>
+            )}
+            {activeTab === 'effects'&& (
+                <>
+                <h3>Audio Effects</h3>
+                <section>
+                    <label htmlFor="noiseFilter">Enhanced Noise Cancellation</label>
+                    <input
+                    type = "checkbox"
+                    id = "noiseFilter"
+                    onChange={(ev => setIsNoiseFilterEnabled(ev.target.checked))}
+                    checked = {isNoiseFilterEnabled}
+                    ></input> 
+                </section>
+                </>
+            )}
+            {activeTab === 'recording' && (
+                <>
+                <h3>Record Meeting</h3>
+                <section>
+                <p>
+                    {isRecording
+                    ?'Meeting is being recorded'
+                    :'Meeting is not being recorded'
+                    }
+                </p>
+                <button disabled = {processingRecRequest} onClick = {toggleRoomRecording}>
+                    {isRecording ? 'Stop Recording' : 'Start Recording'} 
+                </button>
+                </section>
+                </>
+            )}
+            <div>
+                <button className = {`lk-button &{styles.settingCloseButton}`}
+                onClick={() => layoutContext?.widget.dispatch?.({ msg: 'toggle_settings' })}
+                ></button>
+            </div>
         </div>
 
     </div>
-  )
+  );
+}
