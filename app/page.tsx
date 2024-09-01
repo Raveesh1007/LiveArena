@@ -107,49 +107,48 @@ function CustomConnectionTab(props: {label: string}){
       Router.push('/custom/?livekiturl=${serverURL}&token=${token}');
     }
 };
- return (
-  <form className = {styles.form} onSubmit = {onSubmit}>
-    <p style={{marginBottom: 0}}>
-      Connect liveArena meet with a livekit cloud server.
+return (
+  <form className={styles.tabContent} onSubmit={onSubmit}>
+    <p style={{ marginTop: 0 }}>
+      Connect LiveKit Meet with a custom server using LiveKit Cloud or LiveKit Server.
     </p>
-    <input 
-    id = "serverURL"
-    name = "serverURL"
-    type = "url"
-    placeholder = "Livekit server URL : wss://*.livekit.cloud"
-    required 
+    <input
+      id="serverUrl"
+      name="serverUrl"
+      type="url"
+      placeholder="LiveKit Server URL: wss://*.livekit.cloud"
+      required
     />
-    <textarea 
-    id = "token"
-    name = " token"
-    placeholder="token"
-    required 
-    rows={5}
-    style = {{padding: '1px 2px ', fontSize: 'inherit', lineHeight: 'inherit'}}
-   />
-   <div style = {{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-    <div style = {{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
-      <input 
-      id = "use-e2ee"
-      type = "checkbox"
-      checked = {e2ee}
-      onChange = {(ev) => setE2ee(ev.target.checked)}
-      ></input>
-      <label htmlFor = "use-e2ee">Enable end to end Encryption</label>
-    </div>
-    {e2ee && (
-      <div style = {{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
-        <label htmlFor="passphrase">Passphrase</label>
+    <textarea
+      id="token"
+      name="token"
+      placeholder="Token"
+      required
+      rows={5}
+      style={{ padding: '1px 2px', fontSize: 'inherit', lineHeight: 'inherit' }}
+    />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
         <input
-        id = "passphrase"
-        type = "password"
-        value = {sharedPassphrase}
-        onChange = {(ev) => setSharedPassphrase(ev.target.value)}
-        />
+          id="use-e2ee"
+          type="checkbox"
+          checked={e2ee}
+          onChange={(ev) => setE2ee(ev.target.checked)}
+        ></input>
+        <label htmlFor="use-e2ee">Enable end-to-end encryption</label>
       </div>
-    )}
- </div> 
-
+      {e2ee && (
+        <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+          <label htmlFor="passphrase">Passphrase</label>
+          <input
+            id="passphrase"
+            type="password"
+            value={sharedPassphrase}
+            onChange={(ev) => setSharedPassphrase(ev.target.value)}
+          />
+        </div>
+      )}
+    </div>
  <hr
  style={{width: '100%', borderColor: 'rgba(225,225,225,0.15', marginBlock :'1rem'}}
  />
@@ -169,7 +168,7 @@ export default function Page(){
   return (
     <><div className={styles.main} data-lk-theme="default">
       <div className="header">
-        <img src="/images/livearena.png" alt="livearena" width="360" height="45" />
+        <img src="/livearena.png" alt="livearena" width="360" height="45" />
         <h2>
           Video Confrence App built upon {''}
           <a href="https://github.com/livekit/components-js?ref=meet" rel="noopener">
